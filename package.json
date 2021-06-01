@@ -4,7 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "dev": "MONGODB_URL=mongodb://localhost:27017 nodemon dev.js"
+    "start": "MONGODB_URL=mongodb://localhost:27017 nodemon dev.js"
   },
   "author": "",
   "license": "ISC",

@@ -18,49 +18,71 @@ app.get("/", async (req, res) => {
           <title>My Notes</title>
           <style>
               html {
-                  text-align: center;
-                  background-color: #93c5fd;
-                  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
-                  color: white;
-                  font-size: 2rem;
+                background-color: #2E4053;
+                font-family: Arial;
+                letter-spacing: 1px;
+                color: white;
               }
 
-              textarea {
-                  resize: none;
-                  border: 2px solid #9ca3af;
-                  border-radius: 4px;
-                  background-color: #f3f4f6;
-                  padding: 0.5rem;
-                  width: 90%;
+              body {
+                margin: 0;
+                padding-left: 1em;
+                padding-right: 1em;
+              }
+              @media only screen and (min-width: 600px) {
+                body {
+                  padding-left: calc(50vw - 250px - 1em);
+                  padding-right: calc(50vw - 250px - 1em);
+                }
+              }
+              @media only screen and (min-width: 1000px) {
+                body {
+                  padding-left: calc(50vw - 400px - 1em);
+                  padding-right: calc(50vw - 400px - 1em);
+                }
+              }
+
+              form {
+                display: flex;
+              }
+
+              input {
+                border: 2px solid #9ca3af;
+                border-radius: 4px;
+                background-color: #f3f4f6;
+                padding: 0.5rem;
+                width: 100%;
               }
 
               button {
-                  padding-left: 2rem;
-                  padding-right: 2rem;
-                  padding-top: 7px;
-                  padding-bottom: 7px;
-                  background-color: #f3f4f6;
-                  border: 2px solid #9ca3af;
-                  color: #4b5563;
-                  border-radius: 4px;
+                padding-left: 2rem;
+                padding-right: 2rem;
+                padding-top: 7px;
+                padding-bottom: 7px;
+                color: white;
+                font-weight: bold;
+                background-color: #28B463;
+                border: 2px solid #9ca3af;
+                border-radius: 4px;
               }
 
               p {
-                  border-bottom: 2px solid;
-                  padding: 1rem;
-                  text-align: left;
+                background-color: gray;
+                border-radius: 5px;
+                padding: 0.5rem;
               }
           </style>
       </head>
 
       <body>
-
           <h1>My Notes</h1>
 
           <form method="POST">
-              <textarea required name="text" rows="5" cols="50" placeholder="Create a new note"></textarea>
+              <input required name="text" rows="5" cols="50" placeholder="Create a new note"/>
               <button type="submit">Save</button>
           </form>
+
+          <hr/>
 
           ${notes.map((n) => `<p>${n.text}</p>`).join("")}
 
@@ -78,7 +100,7 @@ app.post("/", async (req, res) => {
     const Note = require("./models/Note");
     const note = new Note(req.body);
     await note.save();
-    return res.send("Note saved. <a href=''>Refresh</a>");
+    return res.redirect('back');
   } catch (e) {
     return res.send(e);
   }
