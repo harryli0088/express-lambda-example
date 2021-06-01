@@ -1,13 +1,17 @@
 // app.js
-
+const { connect } = require("./mongoose");
 const express = require("express");
 
-const app = express();
+let connection = null;
 
+const app = express();
 app.use(express.urlencoded({ extended: false }));
+
+
 
 app.get("/", async (req, res) => {
   try {
+    await checkConnected()
     const Note = require("./models/Note");
     const notes = await Note.find({});
     return res.status(200).send(
@@ -16,6 +20,7 @@ app.get("/", async (req, res) => {
 
       <head>
           <title>My Notes</title>
+          <meta name='viewport' content='width=device-width,initial-scale=1'>
           <style>
               html {
                 background-color: #2E4053;
@@ -73,11 +78,23 @@ app.get("/", async (req, res) => {
                 border-radius: 5px;
                 padding: 0.5rem;
               }
+
+              a {
+                color: #85C1E9;
+                text-decoration: underline;
+              }
+              
+              a:visited {
+                color: #BB8FCE;
+              }
           </style>
       </head>
 
       <body>
           <h1>My Notes</h1>
+
+          <div><a href="https://github.com/harryli0088/express-lambda-example" target="_blank" rel="noopener noreferrer">Github Repo</a></div>
+          <br/>
 
           <form method="POST">
               <input required name="text" rows="5" cols="50" placeholder="Create a new note"/>
@@ -99,6 +116,7 @@ app.get("/", async (req, res) => {
 
 app.post("/", async (req, res) => {
   try {
+    await checkConnected()
     const Note = require("./models/Note");
     const note = new Note(req.body);
     await note.save();
@@ -107,5 +125,9 @@ app.post("/", async (req, res) => {
     return res.send(e);
   }
 });
+
+async function checkConnected() {
+  if (connection === null) connection = await connect();
+}
 
 module.exports = app;
