@@ -1,8 +1,9 @@
 # express-lambda-example
 
-Following this tutorial to learn more about AWS Lambda and Serverless
-
+I followed this tutorial to learn more about AWS Lambda and Serverless functions
 https://www.sitepoint.com/a-guide-to-serverless-deployment-with-express-and-mongodb/
+
+I also modified the HTML/CSS and added a deploy script with esbuild (https://www.npmjs.com/package/esbuild).
 
 ## Getting Started
 1. Clone this repo

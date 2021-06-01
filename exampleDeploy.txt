@@ -1,0 +1,5 @@
+#replace YOUR-LAMBDA-FUNCTION-NAME and save this as a .sh file
+
+npm run build
+zip -FSj dist/build.zip dist/index.js
+aws lambda update-function-code --function-name YOUR-LAMBDA-FUNCTION-NAME --zip-file fileb://dist/build.zip

@@ -48,7 +48,8 @@ app.get("/", async (req, res) => {
 
               input {
                 border: 2px solid #9ca3af;
-                border-radius: 4px;
+                border-top-left-radius: 4px;
+                border-bottom-left-radius: 4px;
                 background-color: #f3f4f6;
                 padding: 0.5rem;
                 width: 100%;
@@ -63,11 +64,12 @@ app.get("/", async (req, res) => {
                 font-weight: bold;
                 background-color: #28B463;
                 border: 2px solid #9ca3af;
-                border-radius: 4px;
+                border-top-right-radius: 4px;
+                border-bottom-right-radius: 4px;
               }
 
               p {
-                background-color: gray;
+                background-color: #555;
                 border-radius: 5px;
                 padding: 0.5rem;
               }

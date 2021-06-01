@@ -4,7 +4,8 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "start": "MONGODB_URL=mongodb://localhost:27017 nodemon dev.js"
+    "start": "MONGODB_URL=mongodb://localhost:27017 nodemon dev.js",
+    "build": "node build.js"
   },
   "author": "",
   "license": "ISC",
@@ -15,6 +16,7 @@
   },
   "devDependencies": {
     "concurrently": "^6.2.0",
+    "esbuild": "^0.12.5",
     "nodemon": "^2.0.7"
   }
 }
